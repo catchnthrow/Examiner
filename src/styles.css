@@ -1,0 +1,32 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+    display: block;
+    margin: 0px !important;
+    background: #cccccc !important;
+    font-family: Verdana, sans-serif !important;
+}
+nav .glyph-icon {
+    width:24px;
+    height:24px;
+    }
+
+.bg-dark {
+    background-color: #343a40 !important;
+}
+
+.fa-sm-top{
+    -webkit-transform: scale(0.5,0.5);
+    -ms-transform: scale(0.5,0.5);
+    transform: scale(0.5,0.5);
+    vertical-align: top;
+    margin-left: -5px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.clickable{
+    cursor: pointer;
+}

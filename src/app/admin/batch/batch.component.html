@@ -1,0 +1,68 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="container mt-5 pt-5">
+  <h2 *ngIf="null == batchList || undefined == batchList || batchList.length == 0">
+    No batches found.
+  </h2>
+  <div class="row">
+    <div class="col-lg-12" *ngIf="null != futureBatchList && undefined != futureBatchList && futureBatchList.length > 0">
+      <h2 class="pull-right">
+        Upcoming Batches
+      </h2> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">      
+      <div *ngFor="let batch of futureBatchList" style="font-size: x-large;border-radius: 0.15em;background: white;padding: 10px; border: 1px solid #cccccc;">
+        <div class="row">
+          <div class="col-lg-8">{{batch.batch_name}}</div>
+          <div class="col-lg-2"><span style="font-size:small;">start: <span style="font-weight: 600;">{{batch.batch_start_date | date:'yyyy-MMM-dd'}}</span></span></div>
+          <div class="col-lg-2"><span style="font-size:small;">end: <span style="font-weight: 600;">{{batch.batch_end_date | date:'yyyy-MMM-dd'}}</span></span></div> 
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-12" *ngIf="null != runningBatchList && undefined != runningBatchList && runningBatchList.length > 0">
+        <h2 class="pull-right">
+          Ongoing Batches
+        </h2> 
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-lg-12">      
+      <div *ngFor="let batch of runningBatchList" style="font-size: x-large;border-radius: 0.15em;background: white;padding: 10px; border: 1px solid #cccccc;">
+        <div class="row">
+          <div class="col-lg-8">{{batch.batch_name}}</div>
+          <div class="col-lg-2"><span style="font-size:small;">start: <span style="font-weight: 600;">{{batch.batch_start_date | date:'yyyy-MMM-dd'}}</span></span></div>
+          <div class="col-lg-2"><span style="font-size:small;">end: <span style="font-weight: 600;">{{batch.batch_end_date | date:'yyyy-MMM-dd'}}</span></span></div> 
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-12" *ngIf="null != oldBatchList && undefined != oldBatchList && oldBatchList.length > 0">
+        <h2 class="pull-right">
+          Completed Batches
+        </h2> 
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-lg-12">      
+      <div *ngFor="let batch of oldBatchList" style="font-size: x-large;border-radius: 0.15em;background: white;padding: 10px; border: 1px solid #cccccc;">
+        <div class="row">
+          <div class="col-lg-8">{{batch.batch_name}}</div>
+          <div class="col-lg-2"><span style="font-size:small;">start: <span style="font-weight: 600;">{{batch.batch_start_date | date:'yyyy-MMM-dd'}}</span></span></div>
+          <div class="col-lg-2"><span style="font-size:small;">end: <span style="font-weight: 600;">{{batch.batch_end_date | date:'yyyy-MMM-dd'}}</span></span></div> 
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+  
+  
+</div>

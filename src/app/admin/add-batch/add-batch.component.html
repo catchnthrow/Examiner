@@ -1,0 +1,57 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="container mt-5 pt-5">  
+  <h2>
+    Create Batch
+  </h2> 
+  <br> 
+  <form>
+    <div class="row">
+      <div class="col-lg-6">
+        Batch Name
+      </div>
+      <div class="col-lg-3">
+        <input class="form-control" name="batchName" type="text" id="batchName" placeholder="e.g. UPSC 2019 Feb" [(ngModel)]="batchName">
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-6">
+        Start Date
+      </div>
+      <div class="col-lg-3 input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" id="dp" [(ngModel)]="dateFrom" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <i class="fa fa-calendar fa-2x" (click)="d.toggle()"></i>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-6">
+        End Date
+      </div>
+      <div class="col-lg-3 input-group">
+        <input  class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" [(ngModel)]="dateTo" ngbDatepicker #d1="ngbDatepicker">
+        <div class="input-group-append">
+          <i class="fa fa-calendar fa-2x" (click)="d1.toggle()"></i>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="submitted">
+      <div class="alert alert-danger col-lg-12" style="padding: 10px;" role="alert" *ngIf="submitError">
+        There was an error while creating the batch. All fields are required. Make sure you enter all details and then submit.
+      </div>
+  
+      <div class="alert alert-success col-lg-12" style="padding: 10px;" role="alert" *ngIf="!submitError">
+        New batch created.
+      </div>
+    </div>
+  
+    <div class="row pull-right">
+      <div class="col-lg-2">
+          <button class="btn btn-lg btn-primary btn-sm" style="cursor:pointer;" type="submit" (click)="submit()">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

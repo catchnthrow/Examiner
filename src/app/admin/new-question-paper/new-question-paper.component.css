@@ -1,0 +1,14 @@
+.nav-tabs .nav-item {
+    color: #464a4c !important;
+    background-color: #1ab394;
+    border-color: #ddd #ddd #1ab394;
+}
+
+.alert-danger {
+    background-color: transparent;
+    border-color: transparent;
+    color: #a94442;
+}
+.alert {
+    padding : 0px;
+}

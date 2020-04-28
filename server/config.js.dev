@@ -1,0 +1,20 @@
+var config = {
+    mysql_connection : {
+        host     : 'localhost',
+        user     : 'examinerApp',
+        password : 'your password here',
+        database : 'examiner',
+        port    : 3306
+      },
+    jwtSecret : 'your password here'
+
+    // server : {
+    //     baseUrl : 'http://localhost:4200/'
+    // },
+    
+    // apiUrls : {
+    //     getUserFromCookie : this.server.baseUrl + `api/getUserFromCookie`
+    // }
+};
+
+module.exports = config;

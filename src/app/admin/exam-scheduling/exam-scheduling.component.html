@@ -1,0 +1,80 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="container mt-5 mb-5">
+  <h2>
+    Schedule A Exam
+  </h2>
+  <br>  
+  <hr>
+  <div class="row">
+    <div class="col-lg-6">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="questionPaperList" ngbDropdownToggle>Select a Question Paper</button>
+        <div ngbDropdownMenu aria-labelledby="questionPaperList">
+          <button class="dropdown-item" (click)="onSelectQP(qp)"  *ngFor="let qp of qpList">{{qp.paper_title}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6" *ngIf="selectedQP != undefined && selectedQP != null">
+      {{selectedQP.paper_title}}
+    </div>
+  </div>
+  <br>  
+  <hr>
+  <div class="row" *ngIf="selectedQP != undefined && selectedQP != null">
+    <div class="col-lg-6 pull-right">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="batchList" ngbDropdownToggle>Select a Batch</button>
+        <div ngbDropdownMenu aria-labelledby="batchList">
+          <button class="dropdown-item" (click)="onSelectBatch(batch)" *ngFor="let batch of batchList">{{batch.batch_name}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 pull-right" *ngIf="selectedBatch != null && selectedBatch != undefined">
+        {{selectedBatch.batch_name}}
+    </div>
+  </div>
+  <br>  
+  <hr>
+  <div class="row" *ngIf="selectedBatch != undefined && selectedBatch != null">
+    <div class="col-lg-6 input-group">
+      <h4>Available From </h4>
+    </div>
+    <div class="col-lg-2 col-lg-offset-3 input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateFrom" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-append">
+        <i class="fa fa-calendar fa-2x" (click)="d.toggle()"></i>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div class="row" *ngIf="selectedBatch != undefined && selectedBatch != null">
+    <div class="col-lg-6 input-group">
+        <h4>Available Till </h4>
+      </div>
+      <div class="col-lg-2 col-lg-offset-3 input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateTo" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <i class="fa fa-calendar fa-2x" (click)="d.toggle()"></i>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="row" *ngIf="submitted">
+    <div class="alert alert-danger col-lg-12" style="padding: 10px;" role="alert" *ngIf="submitError">
+      There was an error while creating the schedule. All fields are required. Make sure you select all and then submit.
+    </div>
+
+    <div class="alert alert-success col-lg-12" style="padding: 10px;" role="alert" *ngIf="!submitError">
+      New Schedule created.
+    </div>
+  </div>
+
+  <div class="row pull-right">
+      <div class="col-lg-2">
+          <button class="btn btn-lg btn-primary btn-sm" style="cursor:pointer;" type="submit" (click)="submit()">Submit</button>
+      </div>
+    </div>
+</div>
+
+

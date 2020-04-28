@@ -1,0 +1,32 @@
+<app-super-nav-top-guest></app-super-nav-top-guest>
+<div class="container mt-5 pt-5">   
+  <form class="form-signin" #validateForm="ngForm" novalidate>
+    <h2 class="form-signin-heading">Register</h2>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input name="username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required minlength="4" autofocus="" [(ngModel)]="uid" #email="ngModel">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">Invalid email</div>
+    <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required minlength="4" [(ngModel)]="pwd" #password="ngModel">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">Invalid password</div>
+    <input name="repassword" type="password" id="repassword" class="form-control" placeholder="Re-Enter Password" required minlength="4" [(ngModel)]="retypepwd" #repassword="ngModel">
+    <div *ngIf="repassword.invalid && (password.dirty || password.touched)" class="alert alert-danger">Invalid Re-Enter password</div>
+    <div *ngIf="!repassword.invalid && !password.invalid && this.pwd != this.retypepwd" class="alert alert-danger">Passwords do not match</div>
+    <br>
+    <input name="fname" type="text" id="fname" class="form-control" placeholder="First Name" required="true" autofocus="" [(ngModel)]="fname" required #firstname="ngModel">
+    <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="alert alert-danger">Invalid</div>
+    <input name="mname" type="text" id="mname" class="form-control" placeholder="Middle Name" required="true" autofocus="" [(ngModel)]="mname">
+    <input name="lname" type="text" id="lname" class="form-control" placeholder="Last Name" required="true" autofocus="" [(ngModel)]="lname" required #lastname="ngModel">
+    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">Invalid</div>
+    <input name="mobile" type="text" id="mobile" class="form-control" placeholder="Mobile" required="true" autofocus="" [(ngModel)]="mobile" required #mobileNo="ngModel">
+    <div *ngIf="mobileNo.invalid && (mobileNo.dirty || mobileNo.touched)" class="alert alert-danger">Invalid</div>
+    <div class="alert alert-danger" role="alert" *ngIf="failedRegister && registerResponseMessage.length > 0">
+      {{registerResponseMessage}}
+    </div>    
+    <br>
+    <div *ngIf="isGoToLogin">      
+      <div class="alert alert-info" role="alert" *ngIf="registerResponseMessage.length > 0">{{registerResponseMessage}} </div>  
+      <button class="btn btn-lg btn-primary btn-block btn-sm" style="cursor:pointer;" type="submit" (click)="goToLogin()">Go to Login</button>
+    </div>
+    <button *ngIf="validateForm.invalid" class="btn btn-lg btn-primary btn-block btn-sm" disabled type="submit">Register</button>
+    <button *ngIf="!validateForm.invalid && !isGoToLogin" class="btn btn-lg btn-primary btn-block btn-sm" style="cursor:pointer;" type="submit" (click)="register()">Register</button>
+  </form>
+</div>

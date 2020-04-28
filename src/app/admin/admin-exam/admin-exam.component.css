@@ -1,0 +1,60 @@
+
+.form-check {
+    font-weight: 300 !important;
+}
+
+.tiles {
+    box-shadow: 15px 15px 16px -1px #3333;
+    border-radius:0px;background:#eceeef;
+}
+
+
+a:hover {
+    color: #343a40 !important;
+    text-decoration: none !important;
+}
+
+.card {
+    border: none !important;    
+    border-radius: 0px !important;
+}
+
+.card-header{
+    background: #eceeef !important;
+    border-radius:0px !important;
+}
+
+.question-icon{
+    cursor: pointer;
+    box-shadow: 0px 6px 10px 0px #ababab;
+}
+
+.question-icon:hover{
+    color:#fff;
+    background: black;
+}
+
+.not-answered {
+    color: #fff;
+    background-color: #343a4096;
+}
+
+.book-marked {
+    color: #fff;
+    background-color: #f0ad4e !important;
+}
+
+.book-marked:hover {
+    color: #fff;
+    background-color: black !important;
+}
+
+.answered {
+    color: #fff;
+    background-color: #1AB394;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}

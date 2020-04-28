@@ -1,0 +1,150 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="continer-fluid mt-3" *ngIf="this.questionPaper != undefined && this.questionPaper != null" >
+  <div style="display:flex">
+    <div class="d-flex flex-row" style="width:100%;">
+        <div class="p-3 col-lg-3 container">
+            <div class="tiles">
+            <div class="p-2" style="color:#1ab394;">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h5>
+                        Remaining
+                        </h5>
+                    </div>
+                </div>            
+            </div>          
+            <div id="accordion" role="tablist" class="p-2" *ngIf="questionPaper.categories != undefined">
+                <div class="card" *ngFor="let category of questionPaper.categories; let i = index">
+                    <div class="card-header pl-2" role="tab" id="'headingOne' + i">
+                        <div class="mb-0">
+                        <div class="clickable" data-toggle="collapse" [attr.href]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' +i">
+                            {{category.name}}
+                            <i aria-hidden="true" class="fa fa-star fa-sm-top" style="color: #f0ad4e;" *ngIf="category != undefined && category.isAnyQuestionForReview"></i>
+                            <span class=" pull-right">{{category.unansweredQuestions.length}}</span>
+                        </div>                  
+                        </div>
+                    </div>
+                    <div [attr.id]="'collapse' + i" class="collapse {{category.isCurrentCategory ? 'show' : ''}}" role="tabpanel" [attr.aria-labelledby]="'heading'+ i" data-parent="#accordion">
+                        <div class="card-body p-2">
+                            <div class="row pb-2 pr-2 pl-2 pt-0" *ngIf="category.unansweredQuestions != undefined">
+                                <div class="col-lg-2 pl-2 pt-2" *ngFor="let question of category.unansweredQuestions">
+                                    <div *ngIf="question != undefined" class="clickable badge badge-pill not-answered question-icon {{question != undefined && question.isMarkedForReview ? 'book-marked' : ''}}" (click)="openQuestion(question.id)">{{question.sno}}</div>
+                                </div>                            
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="p-3 col-lg-6 col-sm-12 container">
+            <div class="tiles">
+                <div style="float: left;padding: 0px 0px 0 5px;" *ngIf="currQuestion != undefined && currQuestion.isMarkedForReview == true">
+                    <i aria-hidden="true" class="fa fa-star" style="color: #f0ad4e;"></i>
+                </div>
+                <div class="jumbotron pt-5 pb-3">              
+                    <div class="question-container">                  
+                    <h5>Question {{currQuestion.sno}}</h5>
+                    <br>
+                    <p class="lead">
+                            {{currQuestion.para1}}
+                    </p>                
+                    <p class="lead" *ngIf="currQuestion != undefined && currQuestion.para2 != undefined && currQuestion.para2.length > 0">
+                        <br>
+                        {{currQuestion.para2}}
+                        <br>
+                    </p>
+                    <br>
+                    </div>
+                    <div class="answer-container">
+                        <h5>Answer(s)</h5>
+                        <div class="row">
+                            <div class="form-check col-lg-6 form-check col-lg-6 flex-row d-flex align-items-center">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" [value]="currQuestion.answers[0].id" (click)="selectOneAnswer(currQuestion.answers[0].id)"  [checked]="currQuestion.answers[0].isSelected" [disabled]="true">
+                                </label>
+                                <span>{{currQuestion.answers[0].text}}</span>
+                            </div>
+                            <div class="form-check col-lg-6 form-check col-lg-6 flex-row d-flex align-items-center">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" [value]="currQuestion.answers[1].id" (click)="selectOneAnswer(currQuestion.answers[1].id)"  [checked]="currQuestion.answers[1].isSelected" [disabled]="true">
+                                </label>
+                                <span>{{currQuestion.answers[1].text}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-check col-lg-6 form-check col-lg-6 flex-row d-flex align-items-center">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" [value]="currQuestion.answers[2].id" (click)="selectOneAnswer(currQuestion.answers[2].id)" [checked]="currQuestion.answers[2].isSelected" [disabled]="true">
+                                </label>
+                                <span>{{currQuestion.answers[2].text}}</span>
+                            </div>
+                            <div class="form-check col-lg-6 form-check col-lg-6 flex-row d-flex align-items-center">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" [value]="currQuestion.answers[3].id" (click)="selectOneAnswer(currQuestion.answers[3].id)" [checked]="currQuestion.answers[3].isSelected" [disabled]="true">
+                                </label>
+                                <span>{{currQuestion.answers[3].text}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                    <div class="row">                
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-outline-primary btn-sm btn-custom" data-toggle="tooltip" data-placement="top" title="Submit and previous" (click)="submitAndPrevious()">
+                                Previous
+                            </button>
+                        </div>
+                        <div class="col-lg-8 pull-right">
+                            <button type="button" class="btn btn-outline-primary btn-sm  pull-right" data-toggle="tooltip" data-placement="top" title="Submit and next" (click)="submitAndNext()">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="background: #de3e3e;color: white;text-align: center;font-weight: bold;" *ngIf="currQuestion != undefined && currQuestion.isUserResponseCorrect == 'Wrong'">Wrong Answer</div>
+            <div style="background: #10c181;color: white;text-align: center;font-weight: bold;" *ngIf="currQuestion != undefined && currQuestion.isUserResponseCorrect == 'Correct'">Correct Answer</div>
+            <div style="background: #292727;color: white;text-align: center;font-weight: bold;" *ngIf="currQuestion != undefined && currQuestion.isUserResponseCorrect == 'NotAnswered'">Not Answered</div>
+        </div>        
+    </div>
+    <div class="p-3 col-lg-3 container">
+                <div class="tiles">
+                <div class="p-2" style="color:#1ab394;">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <h5>
+                            Attempted
+                            </h5>
+                        </div>
+                    </div>            
+                </div>          
+                <div id="accordion" role="tablist" class="p-2" *ngIf="questionPaper.categories != undefined">
+                    <div class="card" *ngFor="let category of questionPaper.categories; let i = index;">
+                        <div class="card-header pl-2" role="tab" id="'headingRight' + i">
+                            <div class="mb-0">
+                            <div class="clickable" data-toggle="collapse" [attr.href]="'#collapseRight' + i" aria-expanded="true" [attr.aria-controls]="'collapseRight' + i">
+                                {{category.name}}
+                                <i aria-hidden="true" class="fa fa-star fa-sm-top" style="color: #f0ad4e;" *ngIf="category != undefined && category.isAnyQuestionForReview"></i>
+                                <span class=" pull-right">{{category.answeredQuestions.length}}</span>
+                            </div>                  
+                            </div>
+                        </div>
+                        <div [attr.id]="'collapseRight' + i" class="collapse {{category.isCurrentCategory ? 'show' : ''}}" role="tabpanel" [attr.aria-labelledby]="'headingRight'+ i" data-parent="#accordion">
+                            <div class="card-body p-2">
+                                <div class="row pb-2 pr-2 pl-2 pt-0" *ngIf="category.answeredQuestions != undefined">
+                                    <div class="col-lg-2 pl-2 pt-2" *ngFor="let question of category.answeredQuestions;">
+                                        <div *ngIf="question != undefined" class="clickable badge badge-pill answered question-icon {{question != undefined && question.isMarkedForReview ? 'book-marked' : ''}}" (click)="openQuestion(question.id)">{{question.sno}}</div>
+                                    </div>                            
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+  </div>
+</div>

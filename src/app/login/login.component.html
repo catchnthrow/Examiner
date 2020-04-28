@@ -1,0 +1,16 @@
+<app-super-nav-top-guest></app-super-nav-top-guest>
+<div class="container mt-5 pt-5">   
+  <form class="form-signin">
+    <h2 class="form-signin-heading">Sign in</h2>
+    <input name="username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required [(ngModel)]="uid" #email="ngModel">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">Invalid username</div>
+    <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required [(ngModel)]="pwd" #password="ngModel"> 
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">Invalid password</div>
+    
+    <br>
+    <div class="alert alert-danger" role="alert" *ngIf="failedLogin">
+      Invalid email or password!!! Try Again.
+    </div>
+    <button class="btn btn-lg btn-primary btn-block btn-sm" style="cursor:pointer;" type="submit" (click)="login()">Sign in</button>
+  </form>
+</div>

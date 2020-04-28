@@ -1,0 +1,3 @@
+<app-super-nav-top-guest *ngIf="this.user == null || this.user == undefined"></app-super-nav-top-guest>
+<app-super-nav-top *ngIf="this.user != null && this.user != undefined && !this.user.isAdmin"></app-super-nav-top>
+<app-super-nav-top-admin *ngIf="this.user != null && this.user != undefined && this.user.isAdmin"></app-super-nav-top-admin>

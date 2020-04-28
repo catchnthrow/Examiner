@@ -1,0 +1,15 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="container mt-5 pt-5"> 
+  <h2 *ngIf="null != qpList && undefined != qpList && qpList.length > 0">
+    Question Papers
+  </h2>  
+  <h2 *ngIf="null == qpList || undefined == qpList || qpList.length == 0">
+    There are no question papers added by you.
+  </h2>
+  <ul class="list-group">
+    <li *ngFor="let qp of qpList" class="list-group-item d-flex justify-content-between align-items-center" style="font-size: x-large;">
+      {{qp.paper_title}}
+      <button class="btn btn-lg btn-primary btn-sm" style="cursor:pointer;" type="submit" (click)="onSelect(qp)">Preview</button>
+    </li>
+  </ul>
+</div>

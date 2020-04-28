@@ -1,0 +1,32 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="container mt-5 pt-5">
+  <div>
+    <h2 *ngIf="!this.isErrorOnPage">
+      Your Score
+    </h2>
+    <h2 *ngIf="this.isErrorOnPage">
+      <p class="special-notes">{{this.errorMessage}}</p>
+    </h2>
+  </div>
+  <div *ngIf="!this.isErrorOnPage">
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center row pt-1 pb-1" style="font-size: large;text-align: center;    background-color: #1ab394;color: white;">
+        <div class="col-lg-3" style="text-align: left;">Category</div>
+        <div class="col-lg-2">Questions</div>
+        <div class="col-lg-2">Attempted</div>
+        <div class="col-lg-2">Right</div>
+        <div class="col-lg-2">Wrong</div>
+      </li>
+      <li *ngFor="let sc of this.score" class="list-group-item d-flex justify-content-between align-items-center row" style="font-size: large;text-align: center;">
+        <div class="col-lg-3" style="text-align: left;">{{sc.CategoryName}}</div>
+        <div class="col-lg-2">{{sc.TotalQuestions}}</div>
+        <div class="col-lg-2">{{sc.Attempted}}</div>
+        <div class="col-lg-2">{{sc.RightAnswers}}</div>
+        <div class="col-lg-2">{{sc.WrongAnswers}}</div>
+      </li>
+    </ul>
+    <div>
+      <button class="btn btn-lg btn-primary btn-block btn-sm" style="cursor:pointer;" type="submit" (click)="showDetailedResult()">See Detailed Analysis</button>
+    </div>
+  </div>
+</div>

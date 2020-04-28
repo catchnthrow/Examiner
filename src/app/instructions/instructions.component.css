@@ -1,0 +1,17 @@
+.tiles {
+    box-shadow: 15px 15px 16px -1px #3333;
+    border-radius:0px;background:#eceeef;
+}
+.card {
+    border: none !important;    
+    border-radius: 0px !important;
+}
+
+.instructions-li {
+    font-size: .8rem;
+    padding-top: 10px;
+}
+
+.special-notes {
+    color:red;
+}

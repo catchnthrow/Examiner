@@ -1,0 +1,88 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div *ngIf="this.user != null">
+<div class="" style="background: white;">
+  <div class="container p-5">
+    <div class="row pb-2">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-3 ">
+          <span class="field-name pull-right">Name :</span>
+      </div>
+      <div class="col-lg-6">
+          <span class="field-value">{{this.user.first_name + ' ' + this.user.last_name}}</span>
+      </div>
+    </div>
+    <div class="row pb-2">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-3 ">
+            <span class="field-name pull-right">Id :</span>
+        </div>
+        <div class="col-lg-6">
+            <span class="field-value">{{this.user.id}}</span>
+        </div>
+      </div>
+    <div class="row pb-2">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-3 ">
+            <span class="field-name pull-right">DoB :</span>
+        </div>
+        <div class="col-lg-6">
+            <span class="field-value">{{this.user.dob | date:'fullDate'}}</span>
+        </div>
+      </div>
+      <div class="row pb-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-3 ">
+              <span class="field-name pull-right">Gender :</span>
+          </div>
+          <div class="col-lg-6">
+              <span class="field-value">{{this.user.gender}}</span>
+          </div>
+        </div>
+        <div class="row pb-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-3 ">
+              <span class="field-name pull-right">City :</span>
+          </div>
+          <div class="col-lg-6">
+              <span class="field-value">{{this.user.city}}</span>
+          </div>
+        </div>
+        <div class="row pb-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-3 ">
+              <span class="field-name pull-right">Mobile :</span>
+          </div>
+          <div class="col-lg-6">
+              <span class="field-value">{{this.user.mobile}}</span>
+          </div>
+        </div>
+        <div class="row pb-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-3 ">
+              <span class="field-name pull-right">Batch/Class :</span>
+          </div>
+          <div class="col-lg-6">
+              <span class="field-value">{{this.user.batch}}</span>
+          </div>
+        </div>
+        <div class="row pb-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-3 ">
+              <span class="field-name pull-right">Registration Date :</span>
+          </div>
+          <div class="col-lg-6">
+              <span class="field-value">{{this.user.registration_date | date:'fullDate'}}</span>
+          </div>
+        </div>
+        <div class="row pb-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-3 ">
+              <span class="field-name pull-right">Registration Validity :</span>
+          </div>
+          <div class="col-lg-6">
+              <span class="field-value">{{this.user.registration_validity | date:'fullDate'}}</span>
+          </div>
+        </div>
+  </div>
+</div>
+</div>

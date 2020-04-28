@@ -1,0 +1,28 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="p-3 col-lg-6 col-sm-12 container" *ngIf="!this.isErrorOnPage">
+    <div class="tiles">
+      <div class="jumbotron pt-5 pb-3 card">              
+        <div class="question-container">                  
+          <h4 class="display-6 text-center" *ngIf="this.heading && this.heading.length > 0">{{this.heading}}</h4>
+          <br>
+          <p>{{this.subheading}}</p>
+          <ul *ngIf="this.instructionList != null && this.instructionList.length > 0">
+            <li class="instructions-li" *ngFor="let item of this.instructionList">
+              {{item}}
+            </li>
+          </ul>
+          <p class="special-notes" *ngIf="this.specialNotes && this.specialNotes.length > 0">{{this.specialNotes}}</p>
+          <button class="btn btn-lg btn-primary btn-block btn-sm pointer" type="submit" (click)="startExam()">I agree & Continue</button> 
+        </div>        
+      </div>
+    </div>
+  </div>
+  <div class="p-3 col-lg-6 col-sm-12 container" *ngIf="this.isErrorOnPage">
+      <div class="tiles">
+        <div class="jumbotron pt-5 pb-3 card">              
+          <div class="question-container">                  
+            <p class="special-notes">An error occurred while loading the page. Try login again.</p>
+          </div>        
+        </div>
+      </div>
+    </div>

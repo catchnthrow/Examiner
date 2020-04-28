@@ -1,0 +1,111 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="container mt-5 mb-5">
+  <h2>
+    {{questionPaper == null ? Add : Update}} Question Paper
+  </h2>  
+</div>
+<div class="container mt-1 pt-1">
+  <form #quetionPaperForm="ngForm">
+    <ngb-tabset #t="ngbTabset">
+      <ngb-tab id="tab-instructions" title="Instructions">
+        <ng-template ngbTabContent>        
+            <div class="mt-4 mr-4 ml-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="row">
+                    <div class="col-lg-8">
+                        Paper Title
+                        <input name="paperTitle" type="text" id="paperTitle" class="form-control" placeholder="e.g. UPSC Mains CSE" required [(ngModel)]="questionPaper.title" #paperTitle="ngModel">
+                        <div *ngIf="paperTitle.invalid && (paperTitle.dirty || paperTitle.touched)" class="alert alert-danger">Required</div>
+                    </div>
+                  </div>                       
+                </div>
+                <div class="col-lg-4">
+                  <div class="row">
+                    <div class="col-lg-8">
+                        Course Name
+                        <input name="courseName" type="text" id="courseName" class="form-control" placeholder="e.g. English" required [(ngModel)]="questionPaper.courseName" #courseName="ngModel">
+                        <div *ngIf="courseName.invalid && (courseName.dirty || courseName.touched)" class="alert alert-danger">Required</div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                      <div class="col-lg-8">
+                          Duration (mins)
+                          <input name="duration" type="number" id="duration" class="form-control" placeholder="e.g. 120 mins"  required [(ngModel)]="questionPaper.duration" min=1 max=180 #duration="ngModel">
+                          <div *ngIf="duration.invalid && (duration.dirty || duration.touched)" class="alert alert-danger">Required</div>
+                          <div *ngIf="!(duration.invalid && (duration.dirty || duration.touched)) && duration.value == 0" class="alert alert-danger">Duration cannot be zero</div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <h4 class="mb-4 mt-4">Instructions</h4>
+              <div class="row">            
+                <div class="col-lg-2 mt-2">Heading</div>
+                <div class="col-lg-9">
+                  <input  name="instructionsHeading" type="text" id="instructionsHeading" class="form-control" placeholder="Instructions Heading" [(ngModel)]="questionPaper.instruction.heading">
+                </div>
+              </div>
+              <div class="row  mt-2">
+                <div class="col-lg-2 mt-2">Sub heading</div>
+                <div class="col-lg-9">
+                  <input  name="instructionsHeading" type="text" id="instructionsHeading" class="form-control" placeholder="Please read the below instructions carefully :" [(ngModel)]="questionPaper.instruction.subheading">
+                </div>
+              </div>
+              <div class="row mt-2" *ngFor="let inst of questionPaper.instruction.instructions; let i = index; trackBy:customTrackBy">
+                <div class="col-lg-2 mt-2">Instruction {{i + 1}}</div>
+                <div class="col-lg-8">
+                  <input  name="instructions{{i}}" type="text" id="instruction{{i}}" class="form-control" placeholder="instructions heading" [(ngModel)]="questionPaper.instruction.instructions[i]">
+                </div>
+                <div class="col-lg-0 mt-1 mr-3" style="color: #1ab394;">
+                  <i class="fa fa-plus-circle fa-2x" (click)="addInstruction()"></i>       
+                </div>
+                <div class="col-lg-0 mt-1 mr-3" style="color: #1ab394;">
+                  <i class="fa fa-minus-circle fa-2x" (click)="removeInstruction(i)"></i>       
+                </div>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-lg-2 mt-2">Special Note</div>
+                  <div class="col-lg-8">
+                    <input style="color:red;" name="specialNote" type="text" id="specialNote" class="form-control" placeholder="Please note all questions has negative scores if answered wrong" [(ngModel)]="questionPaper.instruction.specialNotes">
+                  </div>
+              </div>
+            </div>        
+          <button [disabled]="quetionPaperForm.invalid" class="btn btn-outline-primary pull-right mt-4" (click)="t.select('tab-questions')">Next</button>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="tab-questions" title="Questions"> 
+        <ng-template ngbTabContent>
+            <div class="mt-4 mr-4 ml-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <label for="file">Choose File</label>
+                  <input name="file" type="file" id="file" (change)="handleFileInput($event.target.files)">
+                  <div *ngIf="fileToUpload == undefined || fileToUpload == null" class="alert alert-danger">Attach excel file with questions</div>
+                </div>
+                <div class="col-lg-4">
+                    <button [disabled]="fileToUpload == undefined || fileToUpload == null" class="btn btn-outline-primary pull-right mt-4" (click)="submit()">Submit</button>
+                </div>
+                <div class="col-lg-4 pull-right">
+                  <button class="btn btn-outline-primary pull-right mt-4" (click)="downloadTemplate()">Download Template</button>
+                </div>
+              </div>
+            </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </form>
+  <br>
+  <br>
+  <br>
+  <div *ngIf="submitted">
+    <div class="alert alert-danger" style="padding: 10px;" role="alert" *ngIf="submitError">
+      There was an error while creating the question paper. Please review your excel before uploading.
+    </div>
+
+    <div class="alert alert-success" style="padding: 10px;" role="alert" *ngIf="!submitError">
+      Question Paper created. Review it <a class=" clickable alert-link" (click)="showQuestionPapers()">here</a>.
+    </div>
+  </div>
+</div>

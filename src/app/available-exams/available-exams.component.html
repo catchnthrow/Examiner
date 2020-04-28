@@ -1,0 +1,54 @@
+<app-super-nav-top-container></app-super-nav-top-container>
+<div class="container mt-5 pt-5"> 
+  <div class="row" *ngIf="submitted">
+    <div class="alert alert-danger col-lg-12" style="padding: 10px;" role="alert" *ngIf="submitError">
+      There was some problem registering the exam. Try again after sometime.
+    </div>
+
+    <div class="alert alert-success col-lg-12" style="padding: 10px;" role="alert" *ngIf="!submitError">
+      Congratulations!!! You registered for the exam.
+    </div>
+  </div>
+  <h2 *ngIf="null == examsList || undefined == examsList || examsList.length == 0">
+    There are no exams available for you.
+  </h2>
+  <div *ngIf="null != notRegisteredExams && undefined != notRegisteredExams && notRegisteredExams.length > 0">
+    <h2>
+      New Exams
+    </h2> 
+    <ul class="list-group">
+      <li *ngFor="let exam of notRegisteredExams" class="list-group-item d-flex justify-content-between align-items-center" style="font-size: x-large;">
+        {{exam.paper_title}}
+        <button class="btn btn-lg btn-primary btn-sm" style="cursor:pointer;" type="submit" (click)="register(exam)">Register</button>
+      </li>
+    </ul>
+    <br>
+    <br>
+  </div>
+  
+  <div *ngIf="null != registeredAndOngoingExams && undefined != registeredAndOngoingExams && registeredAndOngoingExams.length > 0">
+    <h2>
+      Registered and Ongoing Exams
+    </h2>  
+    <ul class="list-group">
+      <li *ngFor="let exam of registeredAndOngoingExams" class="list-group-item d-flex justify-content-between align-items-center" style="font-size: x-large;">
+        {{exam.paper_title}}
+        <button class="btn btn-lg btn-primary btn-sm" style="cursor:pointer;" type="submit" (click)="onSelect(exam)">{{exam.status_name == "Registered" ? "Start Exam" : exam.status_name == 'Ongoing' ? "Continue Exam" : ""}}</button>
+      </li>
+    </ul>
+    <br>
+    <br>
+  </div>
+
+  <div *ngIf="null != completedExams && undefined != completedExams && completedExams.length > 0">
+    <h2>
+      Completed Exams
+    </h2>  
+    <ul class="list-group">
+      <li *ngFor="let exam of completedExams" class="list-group-item d-flex justify-content-between align-items-center" style="font-size: x-large;">
+        {{exam.paper_title}}
+        <button class="btn btn-lg btn-primary btn-sm" style="cursor:pointer;" type="submit" (click)="showScore(exam)">See Score</button>
+      </li>
+    </ul>
+  </div>
+</div>
